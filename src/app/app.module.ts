@@ -9,6 +9,8 @@ import { GstEditComponent } from './gst-edit/gst-edit.component';
 
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,8 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SlimLoadingBarModule
+    SlimLoadingBarModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

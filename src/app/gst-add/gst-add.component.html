@@ -1,3 +1,37 @@
-<p>
-  gst-add works!
-</p>
+<div class="card">
+    <div class="card-body">
+      <form [formGroup]='gstForm' (ngSubmit)="gstFormSubmit()" >
+        <div class="form-group">
+          <label class="col-md-4">Person Name</label>
+          <input type="text" formControlName="prsn_name" class="form-control" />
+          <div class="alert alert-danger" *ngIf="gstForm.controls['prsn_name'].invalid && (gstForm.controls['prsn_name'].dirty || gstForm.controls['prsn_name'].touched ) " >
+            <div *ngIf="gstForm.controls['prsn_name'].errors.required" >
+              Person name is required !
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">Business Name </label>
+          <input type="text" formControlName="bsns_name" class="form-control" />
+          <div class="alert alert-danger" *ngIf="gstForm.controls['bsns_name'].invalid && (gstForm.controls['bsns_name'].dirty || gstForm.controls['bsns_name'].touched ) " >
+              <div *ngIf="gstForm.controls['bsns_name'].errors.required" >
+                  Business name is required !
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">Business GST Number </label>
+          <input type="text" formControlName="bsns_gst_num" class="form-control" />
+          <div class="alert alert-danger" *ngIf="gstForm.controls['bsns_gst_num'].invalid && (gstForm.controls['bsns_gst_num'].dirty || gstForm.controls['bsns_gst_num'].touched ) " >
+              <div *ngIf="gstForm.controls['bsns_gst_num'].errors.required" >
+                  Business GST Number is required !
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Add Business</button>
+        </div>
+      </form>
+    </div>
+    <p> {{ gstForm.value | json }} </p>
+  </div>
