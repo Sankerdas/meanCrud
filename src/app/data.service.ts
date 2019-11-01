@@ -21,4 +21,9 @@ export class DataService {
     .subscribe( res => console.log('Done') );
   }
 
+  getBusiness() {
+    return this.http.get(`${this.uri}`);
+  }
+
+
 }
