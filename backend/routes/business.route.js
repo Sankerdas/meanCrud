@@ -27,5 +27,20 @@ businessRoutes.route('/').get(function(req, res) {
     })
 })
 
+// edit: define get data for id wise editing
+businessRoutes.route('/edit/:id').get(function(req,res){
+    Business.findById(req.params.id, function(err,business){
+        if(err){
+            console.log('Error in edit '+err);
+        } else {
+            res.json(business);
+        }
+    });
+});
+
+businessRoutes.route('/update/:id').post(function(req,res){
+    console.log(req.params.id);
+});
+
 
 module.exports = businessRoutes;

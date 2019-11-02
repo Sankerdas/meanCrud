@@ -1,3 +1,30 @@
-<p>
-  gst-edit works!
-</p>
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="editBusinessForm" >
+
+      <div class="form-group">
+        <label class="col-md-4">
+          Person Name
+        </label>
+        <input type="text" class="form-control" formControlName="prsn_name" #prsn_name [(ngModel)]="business.prsn_name" />
+      </div>
+      <div class="form-group">
+          <label class="col-md-4">
+            Business Name
+          </label>
+          <input type="text" class="form-control" formControlName="bsns_name" #bsns_name [(ngModel)]="business.bsns_name" />
+        </div>
+        <div class="form-group">
+            <label class="col-md-4">
+              Business GST Number
+            </label>
+            <input type="text" class="form-control" formControlName="bsns_gst_num" #bsns_gst_num [(ngModel)]="business.bsns_gst_num" />
+          </div>
+        <div class="form-group">
+          <button (click)="editBusiness()" class="btn btn-primary" [disabled]="editBusinessForm.invalid" >Update</button>
+        </div>  
+          
+
+    </form>
+  </div>
+</div>

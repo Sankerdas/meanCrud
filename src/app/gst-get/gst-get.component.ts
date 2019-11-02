@@ -17,7 +17,6 @@ export class GstGetComponent implements OnInit {
     this.ds.getBusiness().subscribe(
       (data: Business[]) => {
         this.businesses = data;
-        console.log(this.businesses);
       }
     );
   }

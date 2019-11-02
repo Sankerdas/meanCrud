@@ -25,5 +25,17 @@ export class DataService {
     return this.http.get(`${this.uri}`);
   }
 
+  editBusiness(id) {
+    return this.http.get(`${this.uri}/edit/${id}`);
+  }
+
+  updateBusiness(data, id) {
+    const dataObj = {
+      prsn_name: data.prsn_name,
+      bsns_name: data.bsns_name,
+      bsns_gst_num: data.bsns_gst_num
+    };
+    return this.http.post(`${this.uri}/update/${id}`, dataObj);
+  }
 
 }
