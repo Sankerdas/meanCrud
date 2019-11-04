@@ -38,8 +38,24 @@ businessRoutes.route('/edit/:id').get(function(req,res){
     });
 });
 
-businessRoutes.route('/update/:id').post(function(req,res){
-    console.log(req.params.id);
+// update : define data updation
+businessRoutes.route('/update/:id').post(function(req, res) {
+    Business.findById(req.params.id, function(err, business) { // getting values by id
+        if(!business) {
+            console.log('Could not load Document');
+        } else {
+            // maping updated data
+            business.prsn_name = req.body.prsn_name;
+            business.bsns_name = req.body.bsns_name;
+            business.bsns_gst_num = req.body.bsns_gst_num;
+
+            business.save().then(business => { // saving to collection with matching id
+                res.json('Update completed');
+            }).catch(err => {
+                res.status(400).send('Unable to update data');
+            })
+        }
+    });
 });
 
 

@@ -28,7 +28,7 @@ export class GstEditComponent implements OnInit {
 
   editBusiness() {
     this.route.params.subscribe(params => {
-      this.ds.updateBusiness(this.editBusinessForm.value, params['id']);
+      this.ds.updateBusiness(this.editBusinessForm.value, params['id']).subscribe(res => this.router.navigate(['business']));
     });
   }
 
