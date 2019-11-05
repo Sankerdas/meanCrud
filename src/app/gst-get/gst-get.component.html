@@ -14,7 +14,7 @@
       <td> {{ business.bsns_gst_num }} </td>
       <td> 
         <a [routerLink]="[ '/business/edit', business._id ]" class="btn btn-primary" >Edit</a>
-        <a [routerLink]="[ '/business/delete', business._id ]" class="btn btn-danger" >Delete</a> 
+        <a (click)="delBusiness(business._id)" class="btn btn-danger" >Delete</a> 
       </td>
     </tr>
   </tbody>

@@ -58,5 +58,13 @@ businessRoutes.route('/update/:id').post(function(req, res) {
     });
 });
 
+// delete : define delete record 
+businessRoutes.route('/delete/:id').get(function(req, res) {
+    Business.findByIdAndRemove({_id: req.params.id}, function(err, business){
+        if(err) res.json(err);
+        else res.json('Record successfully Removed !');
+    });
+});
+
 
 module.exports = businessRoutes;
