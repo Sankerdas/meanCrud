@@ -11,9 +11,12 @@ let Business = new schema({
     },
     bsns_gst_num:{
         type: String
+    },
+    bsns_logo:{
+        type: Array
     }
 },{
     collation: 'business'
 });
 
-module.exports = mongoose.model('Business', Business);
+module.exports = mongoose.model('Business', Business); // business schema exporting

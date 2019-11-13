@@ -14,11 +14,11 @@ export class DataService {
     const obj = {
       prsn_name: fmVal.prsn_name,
       bsns_name: fmVal.bsns_name,
-      bsns_gst_num: fmVal.bsns_gst_num
+      bsns_gst_num: fmVal.bsns_gst_num,
+      bsns_logo: fmVal.bsns_logo,
     };
     // sending to node using post method in http
-    this.http.post(`${this.uri}/add`, obj)
-    .subscribe( res => console.log('Done') );
+    return this.http.post(`${this.uri}/add`, obj);
   }
 
   getBusiness() {

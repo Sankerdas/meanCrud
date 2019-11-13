@@ -1,6 +1,7 @@
 // model
 export class Business {
-  Pn: String;
+  prsn_name: String;
   bsns_name: String;
   bsns_gst_num: Number;
+  bsns_logo: String;
 }

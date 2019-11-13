@@ -1,22 +1,24 @@
+
+//---->  REST api
 const express = require('express');
 const app = express();
 const businessRoutes = express.Router();
+const multer = require('multer');
 
 let Business = require('../models/business');
 
-// define add or store route save()
-businessRoutes.route('/add').post(
-    function(req, res) {
-        let business = new Business(req.body);
-        business.save().then(business => {
-            res.status(200).json({'business' : 'business added successfully'})
-        }).catch( err => {
-            res.status(400).send('unable to save to database '+err)
+businessRoutes.post('/add', function(req, res, next) {
+    let business = new Business(req.body);
+    business.save().then(business =>{
+        res.status(200).json({'business': 'Business added successfully'}).catch(err => {
+            res.status(400).send('unable to save data to databse ' + err);
         })
-    }
-);
+    })
+});
 
-// define get data (index or listing) route find()
+
+
+// define get data route (index or listing)
 businessRoutes.route('/').get(function(req, res) {
     Business.find(function(err, businesses){
         if(err){
@@ -65,6 +67,96 @@ businessRoutes.route('/delete/:id').get(function(req, res) {
         else res.json('Record successfully Removed !');
     });
 });
+
+
+// Multer File upload settings
+// const DIR = './public/';
+
+// const multerConfig = {
+//     storage: multer.diskStorage({
+//         destination: function(req, file, next){
+//             next(null, DIR);
+//         },
+//         filename: function(req, file, next) {
+//             console.log(file);
+//         }
+//     })
+// }
+
+// var upload = multer({
+//     storage: storage,
+//     fileFilter: (req, file, cb) => {
+//       if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+//         cb(null, true);
+//       } else {
+//         cb(null, false);
+//         return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+//       }
+//     }
+//   });
+
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//       cb(null, DIR);
+//     },
+//     filename: (req, file, cb) => {
+//       const fileName = file.originalname.toLowerCase().split(' ').join('-');
+//       console.log(file)
+//       cb(null, fileName)
+//     }
+//   });
+
+
+
+//  // define add or store route save()
+// businessRoutes.route('/add').post(
+//     function(req, res) {
+//         let business = new Business(req.body);
+//         business.save().then(business => {
+//             res.status(200).json({'business' : 'business added successfully'})
+//         }).catch( err => {
+//             res.status(400).send('unable to save to database '+err)
+//         })
+//     }
+// );
+
+
+// businessRoutes.post('/add', upload.single('bsns_logo'), function(req, res, next) {
+//     let business = new Business(req.body);
+//     business.save().then(business =>{
+//         var path = '';
+//         upload(req, res, function (err) {
+//            if (err) {
+//              // An error occurred when uploading
+//              console.log(err);
+//              return res.status(422).send("an Error occured")
+//            }  
+//           // No error occured.
+//            path = req.file.path;
+//            return res.send("Upload Completed for "+path); 
+//      });
+//         res.status(200).json({'business': 'Business added successfully'}).catch(err => {
+//             res.status(400).send('unable to save data to databse ' + err);
+//         })
+//     })
+// });
+
+
+// router.post('/', function (req, res, next) {
+//     var path = '';
+//     upload(req, res, function (err) {
+//        if (err) {
+//          // An error occurred when uploading
+//          console.log(err);
+//          return res.status(422).send("an Error occured")
+//        }  
+//       // No error occured.
+//        path = req.file.path;
+//        return res.send("Upload Completed for "+path); 
+//  });     
+// })
+
+
 
 
 module.exports = businessRoutes;

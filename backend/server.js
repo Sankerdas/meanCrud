@@ -17,6 +17,14 @@ const businessRoute = require('./routes/business.route');
       app.use(cors());
       app.use('/business', businessRoute); // app api routes
 
+      app.use(function(req, res, next) {
+        //set headers to allow cross origin request.
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            next();
+        });
+
       const port = process.env.PORT || 4000;
 
       server = app.listen(port, function(){
