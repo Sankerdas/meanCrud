@@ -22,6 +22,17 @@ export class GstGetComponent implements OnInit {
     );
   }
 
+  search(e) {
+    const qr = e.target.value;
+    if (qr === '') {
+         this.callBusinessList();
+    } else {
+        this.ds.getSearch(qr).subscribe( (res: Business[]) => {
+        this.businesses = res;
+        });
+    }
+  }
+
   delBusiness(id) {
     if (confirm('Do you want to delete this Data..?')) {
       this.ds.deleteBusiness(id).subscribe(res => {

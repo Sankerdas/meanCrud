@@ -29,16 +29,31 @@ businessRoutes.route('/').get(function(req, res) {
     })
 })
 
+// Search: define search and get data from prsn_name
+businessRoutes.route('/search/:qry').get(function(req,res){
+    Business.find( { prsn_name: { $regex: req.params.qry, $options: "i" } }, function(err, businesses){
+        if(err){
+            console.log(err)
+        } else {
+            res.json(businesses);
+        }
+    })
+});
+// { $text: { $search: "java coffee shop" } } -- to serach form entire collection -- need to see it showing some error
+
+
+
 // edit: define get data for id wise editing
 businessRoutes.route('/edit/:id').get(function(req,res){
-    Business.findById(req.params.id, function(err,business){
-        if(err){
-            console.log('Error in edit '+err);
-        } else {
-            res.json(business);
-        }
-    });
+  Business.findById(req.params.id, function(err,business){
+      if(err){
+          console.log('Error in edit '+err);
+      } else {
+          res.json(business);
+      }
+  });
 });
+
 
 // update : define data updation
 businessRoutes.route('/update/:id').post(function(req, res) {
@@ -60,7 +75,7 @@ businessRoutes.route('/update/:id').post(function(req, res) {
     });
 });
 
-// delete : define delete record 
+// delete : define delete record
 businessRoutes.route('/delete/:id').get(function(req, res) {
     Business.findByIdAndRemove({_id: req.params.id}, function(err, business){
         if(err) res.json(err);
@@ -130,10 +145,10 @@ businessRoutes.route('/delete/:id').get(function(req, res) {
 //              // An error occurred when uploading
 //              console.log(err);
 //              return res.status(422).send("an Error occured")
-//            }  
+//            }
 //           // No error occured.
 //            path = req.file.path;
-//            return res.send("Upload Completed for "+path); 
+//            return res.send("Upload Completed for "+path);
 //      });
 //         res.status(200).json({'business': 'Business added successfully'}).catch(err => {
 //             res.status(400).send('unable to save data to databse ' + err);
@@ -149,11 +164,11 @@ businessRoutes.route('/delete/:id').get(function(req, res) {
 //          // An error occurred when uploading
 //          console.log(err);
 //          return res.status(422).send("an Error occured")
-//        }  
+//        }
 //       // No error occured.
 //        path = req.file.path;
-//        return res.send("Upload Completed for "+path); 
-//  });     
+//        return res.send("Upload Completed for "+path);
+//  });
 // })
 
 

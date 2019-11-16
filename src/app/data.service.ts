@@ -29,6 +29,12 @@ export class DataService {
     return this.http.get(`${this.uri}/edit/${id}`);
   }
 
+  getSearch(qry) {
+    if (qry !== '') {
+      return this.http.get(`${this.uri}/search/${qry}`);
+    }
+  }
+
   updateBusiness(data, id) {
     const dataObj = {
       prsn_name: data.prsn_name,

@@ -1,3 +1,6 @@
+<div class="form-group">
+  <input type="text" placeholder="Search"  (keyup)="search($event)" class="form-control" />
+</div>
 <table class="table table-hover" >
   <thead>
     <tr>
@@ -8,13 +11,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let business of businesses" >
+    <tr class="fadeIn" *ngFor="let business of businesses" >
       <td> {{ business.prsn_name }} </td>
       <td> {{ business.bsns_name }} </td>
       <td> {{ business.bsns_gst_num }} </td>
-      <td> 
+      <td>
         <a [routerLink]="[ '/business/edit', business._id ]" class="btn btn-primary" >Edit</a>
-        <a (click)="delBusiness(business._id)" class="btn btn-danger" >Delete</a> 
+        <a (click)="delBusiness(business._id)" class="btn btn-danger" >Delete</a>
       </td>
     </tr>
   </tbody>
